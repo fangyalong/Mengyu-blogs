@@ -3,7 +3,9 @@ springBoot+mybatisplus
 
 1、前端
 
-1.JS框架：JQuery
+
+1.JS框架：JQuer
+
 2.滚动监听插件:jQueryWaypoints
 3.UI框架：semantic-ui
 4.Markdown编辑器:editor.md
