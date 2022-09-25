@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="commonheader">
+    <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="css/style-responsive.css" th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
+    <script src="js/respond.min.js" th:src="@{/js/respond.min.js}"> </script>
+    <![endif]-->
+</head>
+
+<div th:fragment="commonjs">
+    <script th:src="@{/js/jquery-1.11.1-min.js}"></script>
+    <script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/modernizr.min.js}"></script>
+</div>
+
+
+<nav th:fragment="menu(n)" class="ui inverted  attached segment my-padded-tb-mini  h-shadow-small orientation my-shadow-small">
+    <div class="ui bottom  indicating attached    progress" data-value="1" data-total="100" id="example4">
+        <div class="bar"></div>
+    </div>
+    <div class="ui inverted  container">
+
+        <div class="ui stackable inverted secondary menu navBackground ">
+
+            <h2 class="ui teal header item display">YiMengLian</h2>
+            <h2 class="ui teal header item">管理后台</h2>
+
+            <a th:href="@{/admin/blogs}" class="my-item item  my-mobile-hide" th:classappend="${n==1} ? 'active'"><i class=" home icon"></i> 博客</a>
+            <a th:href="@{/admin/listTypes}" class="my-item item  my-mobile-hide" th:classappend="${n==2} ? 'active'"><i class=" idea icon"></i> 分类</a>
+            <a th:href="@{/admin/listTags}" class="my-item item  my-mobile-hide" th:classappend="${n==3} ? 'active'"><i class=" paper plane icon"></i> 标签</a>
+            <a th:href="@{/admin/comments}" class="my-item item  my-mobile-hide" th:classappend="${n==4} ? 'active'"><i class=" comment alternate  icon"></i> 评论</a>
+
+            <a th:href="@{/Index}" class="my-item item  my-mobile-hide"><i class=" sign-out alternate icon"></i> 前端</a>
+
+            <div class="right my-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" th:src="${session.user.avatar}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!">
+                        <span th:text="${session.user.username}"></span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a th:href="@{/admin/updatePassword}" class="item">修改密码</a>
+                        <a th:href="@{/admin/logout}" class="item">注销</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui black icon button my-right-top my-mobile-show" id="navId">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<div th:fragment="adminmenu(n)" class="ui attached pointing menu top-size4">
+    <div class="ui container">
+        <div class="right menu">
+            <a th:href="@{/admin/goSaveType}" class="teal item" th:classappend="${n==1} ? 'active'">分类新增</a>
+            <a th:href="@{/admin/listTypes}" class="teal  item" th:classappend="${n==2} ? 'active'">分类列表</a>
+        </div>
+    </div>
+</div>
+
+    <footer  th:fragment="footer" class="ui inverted vertical segment  my-padded-tb-massive" id="footer" style="margin-top:150px">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img th:src="@{/images/QrCode.jpg}" class="ui rounded image" alt="" style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header my-text-thin my-text-spaced">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">用户故事 (User Story)</a>
+                        <a href="#" class="item">用户故事 (User Story)</a>
+                        <a href="#" class="item">用户故事 (User Story)</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header my-text-thin my-text-spaced">互动方式</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email: 1424812374@qq.com</a>
+                        <a href="#" class="item">QQ: 1424812374</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header my-text-thin my-text-spaced">YiMengLian</h4>
+                    <p class="my-text-thin my-text-spaced my-opacity-mini">这是在下的一个,交友、学习、分享的一个平台(博客),
+                        在这里我会经常分享一下本人在生活中、学习中的一些以及看法,希望看到的人能为你们提供帮助,如果写的不好,请多多指教...</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="my-text-thin my-text-spaced my-opacity-tiny">Copyright @ 2022 YiMengLian Designed by MengYu</p>
+        </div>
+
+
+    </footer>
+
+<body>
+
+</body>
+</html>

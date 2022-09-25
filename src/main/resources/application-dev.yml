@@ -1,0 +1,7 @@
+spring:
+   logging:
+      level:
+        root: warn
+        com.lrm: info
+      file:
+        name: log/blog-dev.log

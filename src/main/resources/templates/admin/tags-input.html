@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::AdminSemanticCSS(~{::title})">
+    <title>分类新增</title>
+</template>
+
+<body>
+
+<!--导航 -->
+<nav th:replace="common/common::menu(3)" ></nav>
+<div  class="ui attached pointing menu top-size4">
+    <div class="ui container">
+        <div class="right menu">
+            <a th:href="@{/admin/goSaveTag}" class="teal item active" >标签新增</a>
+            <a th:href="@{/admin/listTags}" class="teal  item ">标签列表</a>
+        </div>
+    </div>
+</div>
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big ">
+    <div class="ui container   top-size3">
+        <div action="#" th:method="post" class="ui form">
+            <div class="ui  attached required segment ">
+                    <div class=" ui  left labeled input">
+                       <label class="ui teal basic label">名称</label>
+                        <div class="ui left icon input ">
+                            <i class="boxes icon"></i>
+                            <input hidden="hidden" id="updateTagId" th:value="${#strings.isEmpty(tag)}? '': ${tag.id}">
+                            <input type="text" name="biaoq" placeholder="标签名(必填)" class="biaoq"
+                                    th:value="${#strings.isEmpty(tag)}? '':${tag.name}">
+                        </div>
+                    </div>
+            </div>
+            <div class="ui error message"></div>
+                <div class="my-margin-left ui right aligned container top-size5" >
+                    <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                    <button id="saveTag"  type="button" href="#" class="ui   teal   button  " >提交</button>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--音乐插件-->
+
+
+<template th:replace="common/introduce::mesuic"></template>
+<template th:replace="common/common::footer"></template>
+
+<template th:replace="common/introduce::AdminSemanticJs"></template>
+
+<script>
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+    $('.ui.form').form({
+        fields: {
+            biaoq : {
+                identifier:'biaoq',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标签名不能为空'
+                }]
+            }
+        }
+    });
+
+
+    $("#saveTag").click(function (){
+        var tagName= $(".biaoq").val();
+        var tagId=$("#updateTagId").val();
+        if(tagName==""||tagName==" "||tagName==null){
+            alert("标签名不能为空")
+            return;
+        }
+
+        if(tagId==""||tagId==" "||tagId==null) {
+            $.ajax({
+                url:'/admin/saveTag',
+                data:{
+                    tagName:tagName,
+                },
+                type:'post',
+                dataType:'json',
+                success:function (data){
+                    if(data.code=="200"){
+                        window.location.href="/admin/listTags";
+                    }else{
+                        alert(data.message);
+                        window.location.href="/admin/goSaveTag";
+                    }
+                }
+            })
+            return;
+        }
+
+        $.ajax({
+            url:'/admin/updateTag',
+            data:{
+                _method: "PUT",
+                tagId:tagId,
+                tagName:tagName,
+            },
+            type:'post',
+            dataType:'json',
+            success:function (data){
+                if(data.code=="200"){
+                    var pageNum=data.retDate
+                    window.location.href="/admin/listTags?pageNum="+pageNum;
+                }else{
+                    alert(data.message);
+                    window.location.href="/admin/goUpdateTag/"+tagId+"/"+tagName;
+                }
+            }
+        })
+
+    });
+</script>
+</body>
+</html>

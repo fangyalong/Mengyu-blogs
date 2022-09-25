@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:fragment="JqueryAndSemantic(title)">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+        <title th:replace="${title}"></title>
+        <link th:href="@{/favicon.ico}" href="../../static/favicon.ico" rel="shortcut icon">
+        <link th:href="@{/lib/Semantic-UI-CSS-master/semantic.css}" href="../../static/lib/Semantic-UI-CSS-master/semantic.css"  rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/mycss.css}" rel="stylesheet" href="../../static/favicon.ico" type="text/css"/>
+        <link th:href="@{/CSS/SequenceDiagram.css}" href="../../static/CSS/SequenceDiagram.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/daf.css}" href="../../static/CSS/daf.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/typo.css}" href="../../static/CSS/typo.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/tocbot.css}" href="../../static/CSS/tocbot.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/APlayer.min.css}" href="../../static/CSS/APlayer.min.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+
+        <div th:fragment="JavaScript">
+            <script type="text/javascript"  th:src="@{/js/jquery-1.11.1-min.js}" src="../../static/js/jquery-1.11.1-min.js"></script>
+            <script type="text/javascript"  th:src="@{/lib/Semantic-UI-CSS-master/semantic.min.js}" src="../../static/lib/Semantic-UI-CSS-master/semantic.min.js"></script>
+            <script type="text/javascript"  th:src="@{/js/myjs.js}" src="../../static/js/myjs.js"></script>
+            <script type="text/javascript"  th:src="@{/lib/waypoints-master/lib/jquery.waypoints.js}" src="../../static/lib/waypoints-master/lib/jquery.waypoints.js"></script>
+            <script type="text/javascript"  th:src="@{/js/SequenceDiagram.js}" src="../../static/js/SequenceDiagram.js"> </script>
+            <script type="text/javascript"  th:src="@{/js/indexViews.js}" src="../../static/js/indexViews.js"></script>
+            <script type="text/javascript"  th:src="@{/js/archiveView.js}" src="../../static/js/archiveView.js"></script>
+            <script type="text/javascript"  th:src="@{/js/jquery.scrollTo.min.js}" src="../../static/js/jquery.scrollTo.min.js"></script>
+            <script type="text/javascript"  th:src="@{/js/APlayer.min.js}" src="../../static/js/APlayer.min.js"></script>
+            <script type="text/javascript"  th:src="@{/js/Meting.min.js}" src="../../static/js/Meting.min.js"></script>
+            <script type="text/javascript"  th:src="@{/js/hl.js}" src="../../static/js/hl.js"></script>
+            <script>
+                $("#newblog-container").load("/footer/newblog")
+            </script>
+        </div>
+
+    <head th:fragment="SemanticCSS(title)">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+        <title th:replace="${title}"></title>
+
+        <link th:href="@{/favicon.ico}" href="../../static/favicon.ico" rel="shortcut icon">
+        <link th:href="@{/lib/Semantic-UI-CSS-master/semantic.css}" href="../../static/lib/Semantic-UI-CSS-master/semantic.css"  rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/mycss.css}" rel="stylesheet" href="../../static/favicon.ico" type="text/css"/>
+        <link th:href="@{/CSS/SequenceDiagram.css}" href="../../static/CSS/SequenceDiagram.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/daf.css}" href="../../static/CSS/daf.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/typo.css}" href="../../static/CSS/typo.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/tocbot.css}" href="../../static/CSS/tocbot.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/APlayer.min.css}" href="../../static/CSS/APlayer.min.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/prism.css}"  rel="stylesheet" type="text/css"/>
+
+    </head>
+
+    <th:block th:fragment="SemanticJs">
+
+        <script type="text/javascript"  th:src="@{/js/tocbot.min.js}" src="../../static/js/tocbot.min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/qrcode/qrcode.js}" src="../../static/lib/qrcode/qrcode.js"></script>
+        <script type="text/javascript"  th:src="@{/js/jquery-1.11.1-min.js}" src="../../static/js/jquery-1.11.1-min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/Semantic-UI-CSS-master/semantic.min.js}" src="../../static/lib/Semantic-UI-CSS-master/semantic.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/myjs.js}" src="../../static/js/myjs.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/waypoints-master/lib/jquery.waypoints.js}" src="../../static/lib/waypoints-master/lib/jquery.waypoints.js"></script>
+        <script type="text/javascript"  th:src="@{/js/jquery.scrollTo.min.js}" src="../../static/js/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/APlayer.min.js}" src="../../static/js/APlayer.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/Meting.min.js}" src="../../static/js/Meting.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/hl.js}" src="../../static/js/hl.js"></script>
+        <script type="text/javascript"  th:src="@{/js/blogView.js}" src="../../static/js/blogView.js"></script>
+
+        <script type="text/javascript"  th:src="@{/js/prism.js}" src="../../static/js/blogView.js"></script>
+        <script>
+            $("#newblog-container").load("/footer/newblog")
+        </script>
+
+    </th:block>
+
+    <div th:fragment="SemanticJsAndewm">
+        <script type="text/javascript"  th:src="@{/js/tocbot.min.js}" src="../../static/js/tocbot.min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/qrcode/qrcode.js}" src="../../static/lib/qrcode/qrcode.js"></script>
+        <script type="text/javascript"  th:src="@{/js/jquery-1.11.1-min.js}" src="../../static/js/jquery-1.11.1-min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/Semantic-UI-CSS-master/semantic.min.js}" src="../../static/lib/Semantic-UI-CSS-master/semantic.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/myjs.js}" src="../../static/js/myjs.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/waypoints-master/lib/jquery.waypoints.js}" src="../../static/lib/waypoints-master/lib/jquery.waypoints.js"></script>
+        <script type="text/javascript"  th:src="@{/js/jquery.scrollTo.min.js}" src="../../static/js/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/APlayer.min.js}" src="../../static/js/APlayer.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/Meting.min.js}" src="../../static/js/Meting.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/hl.js}" src="../../static/js/hl.js"></script>
+        <script type="text/javascript"  th:src="@{/js/blogView.js}" src="../../static/js/blogView.js"></script>
+        <script type="text/javascript"  th:src="@{/js/prism.js}" src="../../static/js/blogView.js"></script>
+
+
+
+    </div>
+
+    <div th:fragment="SemanticJsExcludehl">
+
+        <script type="text/javascript"  th:src="@{/js/tocbot.min.js}" src="../../static/js/tocbot.min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/qrcode/qrcode.js}" src="../../static/lib/qrcode/qrcode.js"></script>
+        <script type="text/javascript"  th:src="@{/js/jquery-1.11.1-min.js}" src="../../static/js/jquery-1.11.1-min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/Semantic-UI-CSS-master/semantic.min.js}" src="../../static/lib/Semantic-UI-CSS-master/semantic.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/myjs.js}" src="../../static/js/myjs.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/waypoints-master/lib/jquery.waypoints.js}" src="../../static/lib/waypoints-master/lib/jquery.waypoints.js"></script>
+        <script type="text/javascript"  th:src="@{/js/jquery.scrollTo.min.js}" src="../../static/js/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/APlayer.min.js}" src="../../static/js/APlayer.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/Meting.min.js}" src="../../static/js/Meting.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/blogView.js}" src="../../static/js/blogView.js"></script>
+
+    </div>
+
+    <head th:fragment="AdminSemanticCSS(title)">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+        <title th:replace="${title}"></title>
+
+        <link th:href="@{/favicon.ico}" href="../../static/favicon.ico" rel="shortcut icon">
+        <link th:href="@{/lib/Semantic-UI-CSS-master/semantic.css}" href="../../static/lib/Semantic-UI-CSS-master/semantic.css"  rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/mycss.css}" rel="stylesheet" href="../../static/favicon.ico" type="text/css"/>
+        <link th:href="@{/CSS/SequenceDiagram.css}" href="../../static/CSS/SequenceDiagram.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/daf.css}" href="../../static/CSS/daf.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/tocbot.css}" href="../../static/CSS/tocbot.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/CSS/APlayer.min.css}" href="../../static/CSS/APlayer.min.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/lib/editormd/css/editormd.min.css}" href="../../static/lib/editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <div th:fragment="AdminSemanticJs">
+        <script type="text/javascript"  th:src="@{/js/jquery-1.11.1-min.js}" src="../../static/js/jquery-1.11.1-min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/tocbot.min.js}" src="../../static/js/tocbot.min.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/Semantic-UI-CSS-master/semantic.min.js}" src="../../static/lib/Semantic-UI-CSS-master/semantic.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/APlayer.min.js}" src="../../static/js/APlayer.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/Meting.min.js}" src="../../static/js/Meting.min.js"></script>
+        <script type="text/javascript"  th:src="@{/js/myjs.js}" src="../../static/js/myjs.js"></script>
+        <script type="text/javascript"  th:src="@{/lib/editormd/editormd.min.js}" src="../../static/lib/editormd/editormd.min.js"></script>
+
+    </div>
+
+
+    <nav th:fragment="menu(n)" class="ui inverted  attached segment my-padded-tb-mini  h-shadow-small orientation">
+        <div class="ui bottom  indicating attached    progress" data-value="1" data-total="100" id="example4">
+            <div class="bar"></div>
+        </div>
+        <div class="ui inverted  container">
+            <div class="ui stackable inverted secondary menu navBackground ">
+                <h2 class="ui teal header item">YiMengLian</h2>
+                <a th:href="@{/Index}" class="my-item item  my-mobile-hide" th:classappend="${n==1} ? 'active'"><i class=" home icon"></i> 首页</a>
+                <a th:href="@{/Index/types}" class="my-item item my-mobile-hide"  th:classappend="${n==2} ? 'active'"><i class=" idea icon"></i> 分类</a>
+                <a th:href="@{/Index/tags}" class="my-item item my-mobile-hide"  th:classappend="${n==3} ? 'active'"><i class=" tags icon"></i> 标签</a>
+                <a th:href="@{/Index/archives}" class="my-item item my-mobile-hide"  th:classappend="${n==4} ? 'active'"><i class=" home icon"></i> 归档</a>
+                <a th:href="@{/Index/about}" class="my-item item my-mobile-hide"  th:classappend="${n==5} ? 'active'"><i class=" info icon"></i> 关于我</a>
+                <a th:href="@{/admin/isLogin}" class="my-item item my-mobile-hide" ><i class="sign-in alternate icon"></i> 后台</a>
+
+                <div class="right item my-item my-mobile-hide">
+                    <form th:action="@{/search}" method="get" name="search" target="_blank" >
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" name="query" placeholder="搜索" id="search"  th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui black icon button my-right-top my-mobile-show" id="navId">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+
+    <div th:fragment="mesuic">
+        <meting-js
+                server="netease"
+                type="playlist"
+                id="5246183642"
+                fixed="true"
+                loop="all"
+                order="random"
+                preload="auto"
+                list-folded="ture"
+                list-max-height="500px">
+        </meting-js>
+    </div>
+
+<div th:fragment="footer">
+    <!--音乐插件-->
+    <footer class="ui inverted vertical segment  my-padded-tb-massive" id="footer">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img th:src="@{/images/QrCode.jpg}" class="ui rounded image" alt="" style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header my-text-thin my-text-spaced">最新博客</h4>
+                    <div id="newblog-container">
+                        <div class="ui inverted link list" th:fragment="newblogList" >
+                            <a th:href="@{/blog(blogId=${blog.id})}" class="item" th:text="${blog.title}" th:each="blog:${newBlos}">用户故事 (User Story)</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header my-text-thin my-text-spaced">互动方式</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email: 1424812374@qq.com</a>
+                        <a href="#" class="item">QQ: 1424812374</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header my-text-thin my-text-spaced">YiMengLian</h4>
+                    <p class="my-text-thin my-text-spaced my-opacity-mini">这是在下的一个,交友、学习、分享的一个平台(博客),
+                        在这里我会经常分享一下本人在生活中、学习中的一些以及看法,希望看到的人能为你们提供帮助,如果写的不好,请多多指教...</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="my-text-thin my-text-spaced my-opacity-tiny">Copyright @ 2022 YiMengLian Designed by MengYu</p>
+        </div>
+
+
+    </footer>
+</div>
+</head>
+<body>
+
+</body>
+</html>

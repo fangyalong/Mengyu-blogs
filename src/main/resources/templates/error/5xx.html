@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>500 Page</title>
+
+    <div th:include="common/common :: commonheader">
+
+    </div>
+
+    <style type="text/css">
+        .font-size8{
+            font-size: 30px !important;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .font-size8{
+                font-size: 20px !important;
+
+            }
+        }
+    </style>
+</head>
+
+<body class="error-page">
+
+<section>
+    <div class="container ">
+
+        <section class="error-wrapper text-center">
+            <h1><img alt="" th:src="@{/images/500-error.png}"></h1>
+            <h2 class="font-size8">出现一点小问题不要紧,主人已经在加紧修复了!!!</h2>
+            <h3 th:text="${message}">Something went wrong.</h3>
+            <p class="nrml-txt" th:text="${trace}">Why not try refreshing you page? Or you can <a href="#">contact our support</a> if the problem persists.</p>
+            <a class="back-btn" th:href="@{/Index}">回到主页</a>
+        </section>
+
+    </div>
+</section>
+
+<div th:include="common/common :: commonjs">
+
+</div>
+
+
+
+</body>
+</html>

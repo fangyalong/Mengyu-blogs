@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mengyu.blogs.mapper.QQMapper">
+
+    <resultMap id="BaseResultMap" type="mengyu.blogs.pojo.QQ">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="bank" column="bank" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,bank,email,
+        avatar
+    </sql>
+</mapper>

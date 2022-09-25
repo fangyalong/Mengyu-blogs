@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>error Page</title>
+
+    <div th:include="common/common :: commonheader">
+
+    </div>
+    <style type="text/css">
+        .font-size8{
+            font-size: 30px !important;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .font-size8{
+                font-size: 25px !important;
+
+            }
+        }
+
+    </style>
+</head>
+
+<body class="error-page">
+
+<section>
+    <div class="container ">
+
+        <section class="error-wrapper text-center">
+            <h2 class="font-size8">阁下竟然想擅自进入是非之地,这样很危险的哦！！！</h2>
+            <h3>阁下请通过正规渠道,进入圣地</h3>
+            <a class="back-btn" th:href="@{/Index/test}">前往登陆页面</a>
+        </section>
+
+    </div>
+</section>
+
+
+
+
+
+<div th:include="common/common :: commonjs">
+
+</div>
+</body>
+</html>

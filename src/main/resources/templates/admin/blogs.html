@@ -1,0 +1,302 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <template th:replace="common/introduce::AdminSemanticCSS(~{::title})">
+        <title>博客管理</title>
+    </template>
+
+
+<body id="body" th:fragment="blogList" >
+<!--导航 -->
+<nav th:replace="common/common::menu(1)" ></nav>
+
+<div class="ui attached pointing menu top-size4">
+    <div class="ui container">
+        <div class="right menu">
+            <a th:href="@{/admin/goSaveBlog}" class="item">发布</a>
+            <a th:href="@{/admin/blogs}" class="teal active item">列表</a>
+        </div>
+    </div>
+</div>
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big ">
+    <div class="ui container  top-size3">
+
+      <div class="ui secondary segment form ">
+
+          <div class="inline fields">
+              <div class="field">
+                  <input type="hidden" id="condition" th:value="${is}">
+              <input type="text" name="title" id="title" placeholder="标题" th:value="${blog.title}">
+              </div>
+              <div class="field">
+                  <div class="ui labeled action input">
+                  <div class="ui type selection dropdown">
+                      <input type="hidden" name="type" class="typeName" th:value="${blog.typeId}" >
+                      <i class="dropdown icon" ></i>
+                      <div class="default text" >分类</div>
+                      <div class="menu">
+                          <div id="typeId" th:each="type,typeStats : ${typelists}" class="item" th:value="${type.id}" th:text="${type.name}">
+
+                          </div>
+                      </div>
+                  </div>
+                      <button id="clear" class="ui compact button">clear</button>
+                  </div>
+              </div>
+              <div class="field">
+                 <div class="ui checkbox">
+                      <input type="checkbox" id="recommend" name="recommend" th:checked="${blog.recommend==null}?'false':(${blog.recommend==0}?'false':'true')">
+                      <label for="recommend">推荐</label>
+                 </div>
+              </div>
+              <div class="field top4">
+                <button type="button" id="conditionSearch" value="1" class="ui mini teal basic button"><i class="search icon"></i>搜索 </button>
+              </div>
+          </div>
+      </div>
+      <div id="table">
+      <table class="ui compact teal table"  >
+          <div >
+        <thead >
+           <tr>
+               <th></th>
+               <th  >标题</th>
+               <th >类型</th>
+               <th>推荐</th>
+               <th>是否发布</th>
+               <th >更新时间</th>
+               <th >操作</th>
+           </tr>
+        </thead>
+        <tbody >
+           <tr th:each="blog,blogStats : ${page.records}" th:if="${count1!=0}">
+               <input type="hidden" th:value="${blog.id}" class="blogId">
+               <td th:text="${blogStats.count}">1</td>
+               <td th:text="${blog.title}">何为爱情</td>
+               <td th:text="${blog.typeId}">认知升级</td>
+               <td th:text="${blog.recommend==1}?'是':'否'">是</td>
+               <td th:text="${blog.published==1}?'发布    ':'草稿'">是</td>
+
+               <td th:text="${blog.updateTime==null}?${blog.createTime}:${blog.updateTime}">2022-09-08 10:31</td>
+               <td>
+                   <a href="javascript:;" class="ui mini teal basic button updateBlog">编辑</a>
+                   <a href="javascript:;" class="ui mini red basic button deleteBlog">删除</a>
+               </td>
+
+           </tr>
+           <tr th:if="${count1==0}">
+               <td colspan="7" style="text-align: center;color: red">没有任何数据</td>
+           </tr>
+        </tbody>
+          </div>
+        <tfoot>
+           <tr class="height1">
+               <th colspan="6 " >
+                   <div class="ui mini floated pagination menu width-left" th:unless="${blogs11==0}">
+                       <a class="icon item goBack" th:style="${page.current-1==0}? 'pointer-events:none':'pointer-events:auto'  " href="javascript:;"  >
+                           <i class="left chevron icon"></i>
+                       </a>
+
+                       <a th:class="${num==page.current}?' active teal  item pageNums':'teal  item pageNums'" th:value="${num}" th:unless="${istj!=0}" href="javascript:;"  th:each="num:${#numbers.sequence(1,page2.pages)}" th:text="${num}">
+
+                       </a>
+                       <a th:class="${num==page.current}?' active teal  item pageNums':'teal item pageNums'" th:value="${num}"  th:unless="${istj==0}" href="javascript:;" th:each="num:${#numbers.sequence(1,totleNum)}" th:text="${num}">
+
+                       </a>
+
+
+                       <a class="icon item  goNext"  href="javascript:;"  th:style="${page.current+1==page.total-2}? 'pointer-events:none':'pointer-events:auto'"  th:id="${page.current}">
+                           <i class="right chevron icon"></i>
+                       </a>
+                   </div>
+
+                   <input type="hidden" id="pageNum" th:value="${page2.current}">
+                   <input type="hidden" id="pageTotle" th:value="${totleNum}">
+                   <a id="addBlog"  href="javascript:;" class="ui mini right floated my-reight teal basic button">新增</a>
+               </th>
+           </tr>
+        </tfoot>
+      </table>
+      </div>
+    </div>
+</div>
+
+
+
+<!--音乐插件-->
+
+
+<template th:replace="common/introduce::mesuic"></template>
+<template th:replace="common/common::footer"></template>
+
+<template th:replace="common/introduce::AdminSemanticJs"></template>
+
+
+
+<script>
+    $("#conditionSearch").click(function (){
+        var title=$("#title").val();
+        var typeId=$(".typeName").val();
+        var isTrue =$("#recommend").prop('checked');
+        if(isTrue==true){
+            var  recommend=1;
+        }else{
+            var  recommend=0;
+        }
+
+        var pageNum=1;
+
+        $("#body").load("/admin/conditionSelectBlogs",{
+            typeId:typeId,
+            title:title,
+            recommend :recommend,
+            pageNum:pageNum
+        })
+    })
+
+        $('.ui.dropdown').dropdown({
+            on : 'hover'
+        });
+
+        $('#addBlog').click(function (){
+            location.href='/admin/goSaveBlog';
+        })
+
+        $('.pageNums').click(function () {
+            var condition=$("#condition").val();
+            var pageNum = $(this).attr("value");
+            if (condition == "1") {
+                var title = $("#title").val();
+                var typeId = $(".typeName").val();
+                var isTrue = $("#recommend").prop('checked');
+                if (isTrue == true) {
+                    var recommend = 1;
+                } else {
+                    var recommend = 0;
+                }
+                $("#body").load("/admin/blogView", {
+                    typeId:typeId,
+                    title:title,
+                    recommend:recommend,
+                    pageNum: pageNum
+                });
+            } else {
+                $("#body").load("/admin/blogView", {
+                    pageNum: pageNum
+                });
+            }
+        });
+
+
+        $(".goBack").click(function (){
+            var condition=$("#condition").val();
+            var pageNum = parseInt($("#pageNum").val()) - 1;
+            if (pageNum <= -1) {
+                pageNum = 0;
+            }
+            if (condition == "1") {
+                var title = $("#title").val();
+                var typeId = $(".typeName").val();
+                var isTrue = $("#recommend").prop('checked');
+                if (isTrue == true) {
+                    var recommend = 1;
+                } else {
+                    var recommend = 0;
+                }
+
+                $("#body").load("/admin/blogView", {
+                    typeId:typeId,
+                    title:title,
+                    recommend:recommend,
+                    pageNum: pageNum
+                });
+            }else{
+                $("#body").load("/admin/blogView", {
+                    pageNum: pageNum
+                });
+            }
+
+        });
+
+        $(".goNext").click(function (){
+            var condition=$("#condition").val();
+            var pageNum=$("#pageNum").val();
+            pageNum=parseInt(pageNum)+1;
+            var pageTotle=$("#pageTotle").val();
+            if(pageNum>=pageTotle){
+                pageNum=pageTotle;
+            }
+            if (condition == "1") {
+                var title = $("#title").val();
+                var typeId = $(".typeName").val();
+                var isTrue = $("#recommend").prop('checked');
+                if (isTrue == true) {
+                    var recommend = 1;
+                } else {
+                    var recommend = 0;
+                }
+
+                $("#body").load("/admin/blogView", {
+                    typeId:typeId,
+                    title:title,
+                    recommend:recommend,
+                    pageNum: pageNum
+                });
+            }else{
+                $("#body").load("/admin/blogView", {
+                    pageNum: pageNum
+                });
+            }
+
+        });
+
+
+        $('.updateBlog').click(function (){
+            var blogId=$(this).parent().parent().find("input").val();
+            var dqy=$("#pageNum").val();
+            window.location.href="/admin/goUpdateBlog/"+blogId+"/"+dqy;
+        })
+
+
+
+
+    $(".deleteBlog").click(function (){
+        var  blogId= $(this).parent().parent().find("input").val();
+        var blogName=$(this).parent().parent().find("input").next().next().text();
+        if(window.confirm("确认删除【"+blogName+"】博客?")) {
+
+            $.ajax({
+                url: '/admin/deleteBlog',
+                data: {
+                    blogId: blogId,
+                    _method: 'delete',
+                },
+                dataType: 'json',
+                type: 'delete',
+                success: function (data) {
+                    if (data.code == "200") {
+                        window.location.href = "/admin/blogs";
+                    } else {
+                        alert(data.message);
+                    }
+                }
+
+            })
+        }
+    })
+
+    $('#clear')
+        .on('click',function (){
+            $('.ui.type.dropdown')
+                .dropdown('clear');
+        });
+
+
+
+</script>
+</body>
+
+</html>

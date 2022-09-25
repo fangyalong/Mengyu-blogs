@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::AdminSemanticCSS(~{::title})">
+    <title>登陆页面</title>
+</template>
+
+
+<body>
+<!--导航 -->
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-massive" style="max-width: 30em !important;margin-top: 150px!important;">
+    <div class="ui container ">
+        <div class="ui middle aligned center aligned grid">
+          <div class="column">
+            <h2 class="ui teal image header">
+                 <div class="content">
+                    管理后台登录
+                </div>
+            </h2>
+            <form class="ui large form" method="post" action="#" th:action="@{/admin/login}">
+                <div class="ui  required segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="username" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <button class="ui fluid large teal submit button">登  录</button>
+                </div>
+
+                <div class="ui mini error message"></div>
+                <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></div>
+
+            </form>
+          </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!--音乐插件-->
+
+
+
+<template th:replace="common/introduce::AdminSemanticJs"></template>
+
+
+
+<script language='javascript'>
+
+
+
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+
+
+    $('.ui.form').form({
+        fields: {
+            username: {
+                identifier: 'username',
+                rules: [{
+                    type: 'empty',
+                    prompt: '用户名不能为空'
+                }]
+            },
+            password: {
+                identifier: 'password',
+                rules: [{
+                    type: 'empty',
+                    prompt: '密码不能为空'
+                }]
+            },
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

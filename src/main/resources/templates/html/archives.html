@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::SemanticCSS(~{::title})">
+    <title>归档</title>
+</template>
+<body>
+
+<!--导航 -->
+<nav th:replace="common/introduce::menu(4)" ></nav>
+
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big  " id="Indexbody1">
+    <div class="ui container top-top">
+<!--    header    -->
+        <div class="ui top attached segment padded top-size">
+            <div class="ui middle aligned two column grid  ">
+                <div class="column">
+                    <h3 class="ui  teal header">归档</h3>
+                </div>
+                <div class="right aligned column">
+                    共 <h2 class="ui orange header my-inline-block my-text-thin" th:text="${count}">124</h2> 篇博客
+                </div>
+            </div>
+        </div>
+
+        <th:block th:each="item:${archiveMap}">
+        <h3 class="ui center aligned header" th:text="${item.key}">2022</h3>
+        <div class="ui fluid attached vertical menu">
+          <a th:href="@{/blog(blogId=${blog.id})}" target="_blank" class="item" th:each="blog:${item.value}">
+              <span>
+              <i class="mini teal circle icon" style="margin-right: 10px"></i><span th:text="${blog.title}">整合spring、mybatis时使用原生servlet处理请求,用到@Autowired注入属性取不到值问题</span>
+              <div class="ui teal basic left pointing label my-padded-mini" th:text="${#dates.format(blog.updateTime,'MMMMdd')}">9月7</div>
+              </span>
+              <div class="ui orange basic left pointing label my-padded-mini" th:text="${blog.flag}">原创</div>
+          </a>
+        </div>
+        </th:block>
+    </div>
+</div>
+
+
+
+
+
+
+<!--音乐插件-->
+<template th:replace="common/introduce::mesuic"></template>
+
+<template th:replace="common/introduce::footer"></template>
+
+
+<template th:replace="common/introduce::SemanticJs"></template>
+
+
+
+</body>
+</html>

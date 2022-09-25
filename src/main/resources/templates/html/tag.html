@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::SemanticCSS(~{::title})">
+    <title>标签</title>
+</template>
+
+<body>
+<!--导航 -->
+<nav th:replace="common/introduce::menu(3)" ></nav>
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big    " id="Indexbody1">
+    <div class="ui container top-top top-size10">
+        <!--   header -->
+        <div class="ui top attached teal segment top-size2">
+            <div class="ui padded vertical segment my-padded-tb-big" th:each="blog,blogStats:${blogs}">
+                <div class="ui mobile aligned middle reversed stackable grid" >
+                    <div class=" eleven wide column">
+                        <h3 class="ui header"><a th:href="@{/blog(blogId=${blog.id})}" th:text="${blog.title}">你真的理解什么是财富自由吗?</a> </h3>
+                        <p class="my-text" th:text="|${blog.description}......|">“财富自由是什么？多少钱才能实现财富自由？财富自由一般来说是指个人资产被
+                            动收入等于或大于生活中的日常开销。而被动收入是指不需要花费时间、精力，就能自动获
+                            得的收入。当进入这种状态就可以说已经实现了财富自由。而多少钱能实现，这跟个人的消 费支出有关。</p>
+                        <div class="ui grid">
+
+                            <div class="eleven wide column">
+                                <div class="ui horizontal link list">
+                                    <div class="item">
+                                        <img th:src="@{/images/toux.jpg}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui avatar image my-size ">
+                                        <div class="content"><a th:href="@{/Index/about}"  class="header">MengYu</a></div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="calendar icon" style="margin-top: -5px"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022-09-02</span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="eye icon"></i><span th:text="${blog.views}" style="margin-left: 5px;margin-top: 5px"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right aligned five wide column">
+                                <a href="#" target="_blank" class="ui teal basic label my-padded-tiny my-text-thin" th:text="${blog.typeId}">认知升级</a>
+                            </div>
+                            <div class="my-padded-lr" >
+                                    <a class="ui   tag label" th:classappend="${tagName.id==tagId}?'teal':''" th:text="${tagName.name}"   th:each="tagName:${blog.tags}">信仰</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="five wide column ">
+                        <a  target="_blank" th:href="@{/blog(blogId=${blog.id})}">
+                            <img th:src="@{${blog.firstPicture}}  " alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui rounded image  imageSize1">
+                        </a>
+                    </div>
+
+                </div>
+            </div >
+
+
+        </div>
+        <div  class="ui bottom  attached segment" th:unless="${blogs.size!=0}">
+            <h2 style="text-align: center;color: red;margin-top: 150px">小主访问的数据,主人暂时还没有添加哦!!!</h2>
+            <br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+        <div class="ui bottom  attached segment" th:unless="${blogs.size==0}">
+            <div class="ui middle aligned four column grid">
+                <div class="column" >
+                    <a th:href="@{/Index/getTagList(pageNum=${pageNum-1},tagId=${tagId})}" th:class="${pageNum==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
+                </div>
+                <div class="column my-kuang">
+                    <div class="ui  mini link pagination menu" >
+                        <a  th:class="${num==pageNum}?'ui active clickNum teal  item':'ui clickNum teal item' " th:each="num:${#numbers.sequence(1,totleNum)}" th:text="${num}" th:href="@{/Index/getTagList(pageNum=${num},tagId=${tagId})}">1</a>
+                    </div>
+                </div>
+                <div class="right aligned column my-right">
+                    <a th:href="@{/Index/getTagList(pageNum=${pageNum+1},tagId=${tagId})}" th:class="${pageNum==totleNum}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+
+
+<div id="backToTheTop" class="h-padded h-fixed h-right-bottom" style="display: none">
+    <a title="回到顶部" href="javascript:;" class="ui icon button topBtn"><i class="angle up blue icon"></i></a>
+</div>
+
+
+<template th:replace="common/introduce::mesuic"></template>
+
+<template th:replace="common/introduce::footer"></template>
+
+<template th:replace="common/introduce::SemanticJs"></template>
+
+
+
+</body>
+</html>

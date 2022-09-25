@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::AdminSemanticCSS(~{::title})">
+    <title>分类管理</title>
+</template>
+
+<body>
+<!--导航 -->
+<nav th:replace="common/common::menu(2)" ></nav>
+
+<div th:replace="common/common::adminmenu(2)" ></div>
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big ">
+    <div class="ui container  top-size3">
+        <table class="ui celled table" id="table">
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="checkbox_all"></th>
+                <th  >序号</th>
+                <th >类型</th>
+                <th >编辑</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="type,typeStats : ${types}">
+                <td><input type="checkbox" class="checkbox_item" th:id="${type.id}"></td>
+                <td th:text="${typeStats.count}">1</td>
+                <td th:text="${type.name}" class="typeName">思维上升</td>
+                <td>
+                    <a  class="ui mini teal basic button updateType">编辑</a>
+                    <a  class="ui mini red basic button deleteType">删除</a>
+                </td>
+
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr class="height1">
+                <th colspan="6 " >
+                    <div class="ui  mini floated pagination menu width-left">
+                        <a class="icon item" th:style="${pageNum==1}? 'pointer-events:none':'pointer-events:auto'  " th:href="@{/admin/listTypes(pageNum=${pageNum-1})}"  >
+                            <i class="left chevron icon"></i>
+                        </a>
+
+                        <a th:class="${num==pageNum}?' active teal  item':'teal  item'"  th:each="num:${#numbers.sequence(1,totleNum)}" th:text="${num}" th:href="@{/admin/listTypes(pageNum=${num})}">
+
+                        </a>
+
+                        <a class="icon item numcurrent"  th:style="${pageNum==totleNum}? 'pointer-events:none':'pointer-events:auto'"  th:id="${1}" th:href="@{/admin/listTypes(pageNum=${pageNum+1})}">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                    <a id="addtypes" href="#" class="ui mini right floated teal basic button">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+
+<!--音乐插件-->
+
+
+<template th:replace="common/introduce::mesuic"></template>
+<template th:replace="common/common::footer"></template>
+
+<template th:replace="common/introduce::AdminSemanticJs"></template>
+
+
+<script>
+    $(function (){
+    })
+
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+    $(".updateType").click(function (){
+        var typeId=$(this).parent().parent().find("input").attr("id");
+
+        $.ajax({
+           url:"/admin/selectType",
+           data:{
+               typeId:typeId
+           },
+           type:'post',
+           dataType: 'json',
+           success:function (data){
+              if(data.code==200){
+                   var typeId=data.retDate.id;
+                   var typeName=data.retDate.name;
+                 window.location.href="/admin/goUpdateType/"+typeId+"/"+typeName;
+               }else{
+                  alert("没有对应的类型!");
+              }
+           }
+         })
+    })
+
+    $("#addtypes").click(function (){
+       window.location.href="/admin/goSaveType";
+    })
+
+    $("#checkbox_all").click(function (){
+        $(".checkbox_item").prop("checked",$(this).prop("checked"));
+    });
+
+    $(".checkbox_item").click(function (){
+      var flag=$(".checkbox_item:checked").length==$(".checkbox_item").length;
+      $("#checkbox_all").prop("checked",flag);
+    })
+
+    $(".deleteType").click(function (){
+        var typeName=$(this).parent().parent().find(".typeName").text();
+        var typeId=$(this).parent().parent().find("input").attr("id");
+        var pageNum=$('.numcurrent').attr("id");
+
+        if(window.confirm("确认删除【"+typeName+"】分类?")){
+           $.ajax({
+               url:'/admin/deleteType',
+               data: {
+                   _method:"DELETE",
+                   typeId:typeId,
+               },
+               type: 'delete',
+               dataType: 'json',
+               success:function (data){
+                   if(data.code=="200"){
+                       window.location.href="/admin/listTypes?pageNum="+pageNum;
+                   }else{
+                      alert(data.message)
+                   }
+               }
+           })
+        }
+    })
+
+
+</script>
+</body>
+</html>

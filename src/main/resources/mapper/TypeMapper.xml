@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mengyu.blogs.mapper.TypeMapper">
+
+    <resultMap id="BaseResultMap" type="mengyu.blogs.pojo.Type">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name
+    </sql>
+
+    <select id="selectAllByNameAndNameCount" resultType="mengyu.blogs.pojo.Type">
+        select t.id,name,count(b.type_id) as nameCount
+        from t_type t
+                 left    join t_blog b on t.id =b.type_id
+        GROUP BY t.id
+        order  by  nameCount desc
+    </select>
+
+    <select id="selectTypeAndPaging" resultType="mengyu.blogs.pojo.Type">
+        select id,name
+        from t_type
+     limit #{num},#{size}
+
+    </select>
+</mapper>

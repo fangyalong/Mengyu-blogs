@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::SemanticCSS(~{::title})">
+    <title>关于我</title>
+</template>
+
+<body>
+<!--导航 -->
+<nav th:replace="common/introduce::menu(5)" ></nav>
+
+
+<!--中间内容-->
+<div class="typo  typo-selection my-container-xsmall my-padded-tb-big" id="Indexbody1">
+    <div class="ui container ">
+        <div class="ui top attached">
+            <div class="ui mini horizontal link list">
+                <div class="item">
+                <div class="content">
+                    <span class="header" ><i class = "user outline red icon" ></i>&nbsp;<span th:text="${user.username}">Meng</span></span>
+                </div>
+            </div>
+            <div class="item">
+                <i class="eye green icon"></i>&nbsp;<span th:text="${user.browses}">520</span>
+            </div>
+            <div class="item">
+                <i class="edit blue icon"></i>&nbsp;<span th:text="${#dates.format(user.updateTime,'YYYY-MM-dd HH:mm:ss')}"> 2022-09-07 16:08:26</span>
+            </div>
+            <div class="item ">
+                <i class="comment alternate outline orange icon"></i>&nbsp;<span th:text="${commentnum}">0</span>
+            </div>
+            </div>
+        </div>
+
+        <div class="ui  segment h-boder-radius">
+          <div class="item site">
+              <i class="hand point right outline icon"><span th:text="${user.username}" >MengYu</span></i>
+          </div>
+            <div class="style" >
+            <p>我是Meng,是一名在校的大学生,说是大学生又着实愧不敢当.咳咳咳,和大家讲讲我的故事吧</p>
+            <p>小的时候,我坐在校车里,抬头便能望到,那耀眼的太阳散发着万丈光芒,那时候的我心中,</p>
+            <p>便有一个稚嫩的想法,认为太阳绕着我转,我一定是有超能力、一定是天之骄子</p>
+                <p>可后来我发现我错了,我受了伤一样会痛、一样会流血,并且在后来的学业、爱情、生活中中也是坎坎坷坷</p>
+                <p>我没有天赋异禀、也没有冰雪聪明,甚至于一个bug要几天才能解决,</p>
+                <p>可那又何妨,如果我不能过目不忘,我便花上一个小时,一个上午,甚至一天的时间来记,</p>
+                <p>这世间的佼佼者本就不多,我只想让我的所学，能使爱我之人和我爱之人幸福!!!</p>
+                <p>写这个博客的目的,主要是为了练一练之前学习的技术,并且不断巩固,同时本人技术有限</p>
+                <p>如果各位发现这篇博客的技术问题、设计问题请指教</p>
+                <p>热爱编程、喜欢思考问题,努力寻找更好的学习方法...</p>
+                <p>最后送给大家一句话--”我异无它,为手熟而“</p>
+                <p style="text-align: right">诸君共勉</p>
+            </div>
+
+            <div class="item site">
+                <i class="certificate icon"></i>目前所学
+            </div>
+            <div class="style">
+                <div class="ui list">
+                    <div class="item">
+                        <i class="map marker icon"></i>
+                        <div class="content">
+                            <span class="header">语言:java、c</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="map marker icon"></i>
+                        <div class="content">
+                            <span class="header">数据库:MySql、Redis</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="map marker icon"></i>
+                        <div class="content">
+                            <span class="header">后端框架:SSM、SpringBoot、Vue</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="map marker icon"></i>
+                        <div class="content">
+                            <span class="header">管理工具:git、Maven</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="map marker icon"></i>
+                        <div class="content">
+                            <span class="header">操作系统:Linux</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="map marker icon"></i>
+                        <div class="content">
+                            <span class="header">IDE:IDEA、Hbuilder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui top container attached teal segment ">
+                <div class="ui threaded comments" style="max-width: 100%;">
+                    <h3 class="ui dividing header">评论区</h3>
+                  <div id="showComment">
+
+
+                  </div>
+
+                    <div class="ui form container " style="margin-top: 10px">
+                        <div class="field">
+                            <input type="hidden" id="parentCommentId" name="ParentCommentId" value="-1">
+                            <input type="hidden" id="vid" name="vid" value="-1">
+
+                            <textarea name="content" id="content1" placeholder="请输入评论信息..."></textarea>
+                        </div>
+                        <div class="fields">
+
+                            <div class="field my-mobile-wide my-margin-bottom-small" style="padding:0px !important;">
+                                <div class="ui corner labeled input">
+                                    <div class="ui input focus" id="qq_input_box" >
+                                        <img id="qq_avatar" class="ui avatar circular image" th:src="@{/images/commentAvatar.jpg}" style="width: 2.5em;height: 2.5em;">
+                                        <input type="text"  id="qq" name="qq"  placeholder="填写QQ号自动拉取信息">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field my-mobile-wide my-margin-bottom-small">
+                                <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input type="text" id="nickname" name="nickname" placeholder="昵称(必填)">
+                                </div>
+                            </div>
+                            <div class="field my-mobile-wide my-margin-bottom-small">
+                                <div class="ui left icon input">
+                                    <i class="mail icon"></i>
+                                    <input  id="email" type="email" name="email" placeholder="邮箱(必填)">
+                                </div>
+                                <p id="emailMessage" class="emailStyle"></p>
+                            </div>
+
+
+
+                        </div>
+                        <div class="field my-mobile-wide my-margin-bottom-small button1 ">
+                            <button id="addComment1" class="ui  my-mobile-wide teal button "><i class="edit icon "></i>评论</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--音乐插件-->
+<template th:replace="common/introduce::mesuic"></template>
+
+<template th:replace="common/introduce::footer"></template>
+
+
+<template th:replace="common/introduce::SemanticJs"></template>
+
+<script>
+    $(function (){
+        forComment();
+    })
+
+    $(document).on("click","#addComment1",function () {
+
+        var verify = $('.ui .form').form('validate form');
+        if (verify) {
+            var qq = $("#qq").val();
+            var nickname = $("#nickname").val();
+            var email = $("#email").val();
+            var content = $("#content1").val();
+            var qq_avatar = $("#qq_avatar").attr("src");
+            var parentCommentId = $("#parentCommentId").val();
+
+            $.ajax({
+                url: '/Index/saveComment',
+                data: {
+                    qq: qq,
+                    nickname: nickname,
+                    email: email,
+                    content: content,
+                    avatar: qq_avatar,
+                    parentCommentId:parentCommentId,
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+
+                    if (data.code == "200") {
+                        clearContent();
+                        forComment();
+                        emailAlert(content,nickname,email);
+                    } else {
+                        alert(data.message);
+                    }
+                }
+
+            })
+        } else {
+            alert("请将数据填写完整!");
+            return;
+        }
+    })
+
+
+    $('.ui.form').form({
+        fields: {
+            qq: {
+                identifier: 'qq',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'qq格式错误'
+                }]
+            },
+            nickname: {
+                identifier: 'nickname',
+                rules: [{
+                    type: 'empty',
+                    prompt: '昵称不能为空'
+                }]
+            },
+
+            email: {
+                identifier: 'email',
+                rules: [{
+                    type: 'email',
+                    prompt: '邮箱格式错误'
+                }]
+            },
+            content: {
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: '评论内容不能为空'
+                }]
+            },
+        }
+    })
+    //情况内容
+    function clearContent(){
+        $("[name='qq']").val("");
+        $("[name='content']").val("");
+        $("[name='content']").attr("placeholder","请输入评论信息...");
+        $("[name='nickname']").val("");
+        $("[name='email']").val("");
+        $("#parentCommentId").val(-1);
+    }
+
+    //点击回复
+    function reply(obj){
+        $("[name='content']").attr("placeholder","@"+$(obj).data("name")).focus();
+        $("#parentCommentId").val($(obj).data("id"));
+        $("#vid").val($(obj).data("id"));
+
+        $(window).scrollTo($('#content1'),500);
+    }
+
+    //遍历评论
+    function forComment(){
+        $.ajax({
+            url:'/Index/comments',
+            type:'get',
+            dataType: 'json',
+            success:function (data){
+                $("#showComment").empty();
+                $.each(data, function (index,item) {
+
+                    let  commentDiv=  $("<div class=\"comment\"></div>");
+                    commentDiv.append(
+                        $("<a class=\"avatar\"></a>").append(
+                            $("<img>").attr("src",item.avatar)
+                        )
+                    ).append(
+                        $("<div class=\"content\"></div>").append(
+                            $("<a class=\"author\"></a>").append(
+                                $("<span></span>").append(item.nickname).append(
+                                    item.adminiStrator==1 ? $("<div class=\"ui mini basic teal left pointing label h-padded-mini\">博主</div>"):""
+                                )
+                            )
+                        ).
+                        append(
+                            $("<div class=\"metadata\"></div>").append(
+                                $("<span class=\"date\"></span>").append(datatime(item.createTime))
+                            )
+                        ).append($("<div class=\"text\"></div>").append(
+                            $("<p class=\"my-fontx1\"></p>").append(item.content)
+                            )
+                        ).append(
+                            $("<div class=\"actions\"></div>").append(
+                                $("<a class=\"reply\">回复</a>").on("click",function (){
+                                    reply($(this));
+                                }).attr("data-id",item.id).attr("data-name",item.nickname)
+                            )
+                        )
+                    )
+                    if(item.sonComments.length>0){
+                        let commentsDiv=$("<div class=\"comments\"></div>");
+
+                        $.each(item.sonComments,function (sonIndex,sonItem){
+                            commentsDiv.append(
+                                $("<div class=\"comment\"></div>").append(
+                                    $("<a class=\"avatar\"></a>").append(
+                                        $("<img>").attr("src",sonItem.avatar)
+                                    )
+                                )
+                                    .append(
+                                        $("<div class=\"content\"></div>").append(
+                                            $("<a class=\"author\"></a>").append(sonItem.nickname).append(
+                                                sonItem.adminiStrator==1? $("<div class=\"ui mini basic teal left pointing label h-padded-mini\">博主</div>"):""
+                                            )
+                                        ).append(
+                                            $("<div class=\"metadata\"></div>").append(
+                                                $("<span class=\"date\"></span>").append(datatime(sonItem.createTime))
+                                            )
+                                        ).append(
+                                            $("<div class=\"text\"></div>").append(sonItem.content)
+                                        )
+                                            .append(
+                                                $("<div class=\"actions\"></div>").append(
+                                                    $("<a class=\"reply\">回复</a>").on("click",function (){
+                                                        reply($(this));
+                                                    }).attr("data-id",sonItem.id).attr("data-name",sonItem.nickname)
+
+                                                )
+                                            )
+                                    )
+                            )
+                            if(sonItem.sonComments.length>0){
+                                eachSonComment(sonItem,commentsDiv)
+                            }
+                            // 将子级评论加到父级评论下
+                            commentsDiv.appendTo(commentDiv);
+                        })
+                    }
+                    // 将评论添加到评论列表
+                    commentDiv.appendTo("#showComment");
+                })
+            }
+        })
+
+    }
+    //递归后续子评论
+    function eachSonComment(sonCommentList,commentsDiv){
+        $.each(sonCommentList.sonComments,function (commentIndex,commentItem) {
+            commentsDiv.append(
+                $("<div class=\"comment\"></div>").append(
+                    $("<a class=\"avatar\"></a>")
+                        .append(
+                            $("<img>").attr("src",commentItem.avatar)
+                        )
+                ).append(
+                    $("<div class=\"content\"></div>").append(
+                        $("<a class=\"author\"></a>").append(
+                            $("<span></span>").append(commentItem.nickname).append(
+                                commentItem.adminiStrator==1? $("<div class=\"ui mini basic teal left pointing label h-padded-mini\">博主</div>"):""
+                            ).append(
+                                $("<span> 回复 </span>")
+                            ).append(
+                                $("<a href='javascript:;'></a>").append("@"+sonCommentList.nickname)
+                            )
+                        )
+                    ).append(
+                        $("<div class=\"metadata\"></div>").append(
+                            $("<span class=\"date\"></span>").append(datatime(commentItem.createTime))
+                        )
+                    ).append(
+                        $("<div class=\"text\"></div>").append(commentItem.content)
+                    ).append(
+                        $("<div class=\"actions\"></div>").append(
+                            $("<a class=\"reply\">回复</a>").on("click", function () {
+                                reply($(this));
+                            }).attr("data-id", commentItem.id).attr("data-name", commentItem.nickname)
+                        )
+                    )
+                )
+            )
+            if (commentItem.sonComments.length>0){
+                eachSonComment(commentItem,commentsDiv);
+            }
+        })
+
+    }
+
+    //转换时间格式
+    function datatime(time){
+        var newtime=time.toString();
+        var dateee = new Date(newtime).toJSON();
+        var date = new Date(+new Date(dateee)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'')
+        return date;
+    }
+
+    //邮件提醒
+    function emailAlert(contentData,nickname,email){
+        var parentCommentId=$("#vid").val();
+
+        $.ajax({
+            url:'/Index/emailAlert',
+            data:{
+                parentCommentId:parentCommentId,
+                nickname:nickname,
+                email:email,
+                content:contentData
+            },
+            type:"POST",
+            success:function () {
+                $("#vid").val(-1);
+            }
+        })
+    }
+</script>
+
+</body>
+</html>

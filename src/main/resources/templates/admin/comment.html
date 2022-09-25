@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::AdminSemanticCSS(~{::title})">
+    <title>评论管理</title>
+</template>
+
+<body>
+<!--导航 -->
+<nav th:replace="common/common::menu(4)"></nav>
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big ">
+    <div class="ui container  top-size9">
+        <table class="ui celled table" id="table">
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="checkbox_all"></th>
+                <th>序号</th>
+                <th>昵称</th>
+                <th>邮箱</th>
+                <th>内容</th>
+                <th>创建时间</th>
+                <th>编辑</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="comment,commentStats : ${page.records}">
+                <td><input type="checkbox" class="checkbox_item" th:id="${comment.id}"></td>
+                <td th:text="${commentStats.count}">1</td>
+                <td th:text="${comment.nickname}" ></td>
+                <td th:text="${comment.email}" ></td>
+                <td th:text="${comment.content}" class="content"></td>
+                <td th:text="${comment.createTime}"></td>
+                <td>
+                    <a  class="ui mini red basic button deleteComment">删除</a>
+                </td>
+
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr class="height1">
+                <th colspan="6 " >
+                    <div class="ui  mini floated pagination menu width-left">
+                        <a class="icon item" th:style="${page.current-1==0}? 'pointer-events:none':'pointer-events:auto'  " th:href="@{/admin/comments(pageNum=${page.current-1})}"  >
+                            <i class="left chevron icon"></i>
+                        </a>
+
+                        <a th:class="${num==page.current}?' active teal  item':'teal  item'"  th:each="num:${#numbers.sequence(1,page.pages)}" th:text="${num}" th:href="@{/admin/comments(pageNum=${num})}">
+
+                        </a>
+
+                        <a class="icon item numcurrent"  th:style="${page.current==page.pages}? 'pointer-events:none':'pointer-events:auto'"  th:id="${page.current}" th:href="@{/admin/comments(pageNum=${page.current+1})}">
+                            <i class="right chevron icon"></i>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+
+<!--音乐插件-->
+
+
+<template th:replace="common/introduce::mesuic"></template>
+<template th:replace="common/common::footer"></template>
+
+<template th:replace="common/introduce::AdminSemanticJs"></template>
+
+
+<script>
+     $(".deleteComment").click(function (){
+         var commentId=$(this).parent().parent().find("input").attr("id");
+         var content=$(this).parent().parent().find(".content").text();
+         if(window.confirm("确认删除【"+content+"】标签?")) {
+
+             $.ajax({
+                 url: '/admin/deleteComments',
+                 data: {
+                     _method: 'delete',
+                     commentId: commentId
+                 },
+                 type: 'delete',
+                 dataType: 'json',
+                 success: function (data) {
+                     if (data.code == "200") {
+                         window.location.href = "/admin/comments";
+                     } else {
+                         alert("删除失败")
+                     }
+                 }
+
+             })
+         }
+     })
+
+
+</script>
+</body>
+</html>

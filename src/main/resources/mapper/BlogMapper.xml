@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mengyu.blogs.mapper.BlogMapper">
+
+    <resultMap id="BaseResultMap" type="mengyu.blogs.pojo.Blog">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="firstPicture" column="first_picture" jdbcType="VARCHAR"/>
+            <result property="flag" column="flag" jdbcType="VARCHAR"/>
+            <result property="views" column="views" jdbcType="INTEGER"/>
+            <result property="appreciation" column="appreciation" jdbcType="INTEGER"/>
+            <result property="shareStatement" column="share_statement" jdbcType="INTEGER"/>
+            <result property="commentabled" column="commentabled" jdbcType="INTEGER"/>
+            <result property="published" column="published" jdbcType="INTEGER"/>
+            <result property="recommend" column="recommend" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+            <result property="tagId" column="tag_id" jdbcType="INTEGER"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="commentCount" column="comment_count" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,content,
+        first_picture,flag,views,
+        appreciation,share_statement,commentabled,
+        published,recommend,create_time,
+        update_time,type_id,tag_id,
+        description,comment_count,user_id
+    </sql>
+
+    <sql id="Base_Column_b_List">
+        a.id,title,content,
+        first_picture,flag,views,
+        appreciation,share_statement,commentabled,
+        published,recommend,a.create_time,
+        a.update_time,type_id,tag_id,
+        description,comment_count,user_id
+    </sql>
+
+    <sql id="Base_Column_a_List">
+        a.id,a.title,a.content,
+        a.first_picture,a.flag,a.views,
+        a.appreciation,a.share_statement,a.commentabled,
+        a.published,a.recommend,a.create_time,
+        a.update_time,b.name as type_id,
+        a.description,a.comment_count,d.username as user_id
+    </sql>
+    <insert id="insertBlog" parameterType="blog">
+        insert into t_blog(id,title,content,first_picture,flag,views,appreciation,share_statement,commentabled,published,recommend,create_time,update_time,type_id,description,user_id)
+        values(#{id},#{title},#{content},#{firstPicture},#{flag},#{views},#{appreciation},#{shareStatement},#{commentabled},#{published},#{recommend},#{createTime},#{updateTime},#{typeId},#{description},#{userId})
+    </insert>
+    <update id="updateViewsById">
+        update t_blog
+        set views = #{views,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+
+
+
+
+    <select id="QueryAllBlog" resultType="mengyu.blogs.pojo.Blog" parameterType="map">
+        select
+        <include refid="Base_Column_a_List" />
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+
+    <where>
+        <if test="blog.title!=null and blog.title!=''">
+             and a.title like '%' #{blog.title} '%'
+        </if>
+        <if test="blog.typeId!=null and blog.typeId!=''">
+            and b.name like  #{blog.typeId}
+        </if>
+        <if test="blog.recommend!=null and blog.recommend!=''">
+            and a.recommend =  #{blog.recommend}
+        </if>
+
+    </where>
+        ORDER BY a.create_time DESC
+        limit #{num},#{size}
+    </select>
+
+
+
+    <select id="getByIdBlog" resultType="mengyu.blogs.pojo.Blog" parameterType="integer">
+        select
+        <include refid="Base_Column_a_List" />
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+        where  a.id=#{blogId}
+    </select>
+
+    <select id="conditionCount" resultType="java.lang.Integer"  parameterType="map">
+        select count(*),
+        <include refid="Base_Column_a_List" />
+
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+
+        <where>
+            <if test="blog.title!=null and blog.title!=''">
+                and a.title like '%' #{blog.title} '%'
+            </if>
+            <if test="blog.typeId!=null and blog.typeId!=''">
+                and b.name like '%' #{blog.typeId} '%'
+            </if>
+            <if test="blog.recommend!=null and blog.recommend!=''">
+                and a.recommend =  #{blog.recommend}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="QueryBlogs" resultType="mengyu.blogs.pojo.Blog" parameterType="map">
+        select
+        <include refid="Base_Column_b_List" />
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+        ORDER BY a.create_time DESC
+        limit #{num},#{size}
+    </select>
+
+    <select id="selectBylike" resultType="mengyu.blogs.pojo.Blog" parameterType="map">
+        select
+        <include refid="Base_Column_a_List" />
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+        where a.title like '%' #{query} '%' or a.content like '%' #{query} '%'
+        ORDER BY a.create_time DESC
+        limit #{num},#{size}
+    </select>
+
+    <select id="selectByLikeCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+        where a.title like '%' #{query} '%' or a.content like '%' #{query} '%'
+    </select>
+    <select id="pageViewCount" resultType="java.lang.Integer">
+        select sum(views)
+        from t_blog
+    </select>
+
+    <select id="QueryByTypeId" resultType="mengyu.blogs.pojo.Blog" parameterType="map">
+        select
+        <include refid="Base_Column_a_List" />
+        from t_blog a
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+        where a.type_id=#{typeId}
+        ORDER BY a.create_time DESC
+        limit #{num},#{size}
+    </select>
+
+    <select id="getCountByTypeId" resultType="java.lang.Integer">
+        select count(a.id)
+        from t_blog a
+                 join t_type b on a.type_id=b.id
+                 join t_user d on a.user_id=d.id
+        where a.type_id=#{typeId}
+
+    </select>
+
+
+    <select id="queryByTagIds" resultType="mengyu.blogs.pojo.Blog">
+        select
+        <include refid="Base_Column_a_List" />
+        from t_blog a
+        join t_blog_tag bt on a.id=bt.blog_id
+        join t_type b on a.type_id=b.id
+        join t_user d on a.user_id=d.id
+        where bt.tag_id=#{tagId}
+        ORDER BY a.create_time DESC
+        limit #{num},#{size}
+
+    </select>
+
+    <select id="getCountByTagId" resultType="java.lang.Integer">
+        select count(a.id)
+        from t_blog a
+                 join t_blog_tag bt on a.id=bt.blog_id
+                 join t_type b on a.type_id=b.id
+                 join t_user d on a.user_id=d.id
+        where bt.tag_id=#{tagId}
+
+    </select>
+
+    <select id="selectGroupYear" resultType="string">
+        select date_format(b.update_time,'%Y') as year
+        from t_blog b
+        GROUP BY year
+        order  by year desc
+    </select>
+
+    <select id="selectByYear" resultType="mengyu.blogs.pojo.Blog">
+       select
+        <include refid="Base_Column_b_List"/>
+       from t_blog a
+        where date_format(a.update_time,'%Y')=#{year}
+    </select>
+
+    <select id="getNBlos" resultType="mengyu.blogs.pojo.Blog">
+        select
+        <include refid="Base_Column_b_List"/>
+        from t_blog a
+        order  by a.update_time desc
+
+    </select>
+
+
+
+</mapper>

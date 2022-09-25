@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mengyu.blogs.mapper.CommentMapper">
+
+    <resultMap id="BaseResultMap" type="mengyu.blogs.pojo.Comment">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="blogId" column="blog_id" jdbcType="INTEGER"/>
+            <result property="parentCommentId" column="parent_comment_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,nickname,email,
+        content,avatar,create_time,
+        blog_id,parent_comment_id,admini_strator,type_comment
+    </sql>
+
+    <insert id="saveComment" parameterType="mengyu.blogs.pojo.Comment" >
+        insert into t_comment (nickname,email, content,avatar, blog_id,parent_comment_id,admini_strator,type_comment)
+        values (#{nickname},#{email},#{content},#{avatar},#{blogId},#{parentCommentId},#{adminiStrator},#{typeComment});
+    </insert>
+
+
+    <select id="selectByBlogIdAndParentCommentIdIsNull" resultType="mengyu.blogs.pojo.Comment">
+        select
+        <include refid="Base_Column_List" />
+        from t_comment
+        where blog_id =#{blogId} and parent_comment_id is null
+    </select>
+
+    <select id="selectByParentCommentId" resultType="mengyu.blogs.pojo.Comment">
+        select
+        <include refid="Base_Column_List" />
+        from t_comment
+        where parent_comment_id=#{parentCommentId}
+    </select>
+    <select id="selectAllById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_comment
+        where
+        id = #{parentCommentId,jdbcType=NUMERIC}
+    </select>
+
+    <select id="selectByAboutCommentCommentIdIsNull" resultType="mengyu.blogs.pojo.Comment">
+        select
+        <include refid="Base_Column_List" />
+        from t_comment
+        where type_comment =1 and parent_comment_id is null
+    </select>
+
+    <select id="selectAboutCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_comment
+        where type_comment =1
+    </select>
+</mapper>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <template th:replace="common/introduce::SemanticCSS(~{::title})">
+        <title>标签</title>
+    </template>
+
+<body>
+<!--导航 -->
+<nav th:replace="common/introduce::menu(3)"></nav>
+
+
+
+<!--中间内容-->
+    <div class=" h-margin-show my-padded-tb-large">
+        <div class="ui container">
+           <div class="biaoq-style" >
+
+                   <h2 style="text-align: center">标签</h2>
+               <div id="showTag">
+
+               </div>
+
+
+           </div>
+
+        </div>
+    </div>
+
+
+
+
+<!--音乐插件-->
+
+<template th:replace="common/introduce::mesuic"></template>
+
+
+
+<template th:replace="common/introduce::SemanticJsExcludehl"></template>
+
+<script>
+    $(function (){
+
+        $.ajax({
+            url:'/Index/tagsList',
+            type:'get',
+            dataType:'json',
+            success:function (data){
+                if(data.code=="200"){
+                    var num=new Array(0,1,2,3,4,5);
+                    var font_size=new Array("font-size","font-size2","font-size3","font-size4","font-size5","font-size6",)
+                    var color=new Array("color","color2","color3","color4","color5","color6")
+                    $.each(data.retDate,function (index,item){
+                        var random = Math.floor(Math.random() * 10) % color.length;
+                        $("<a></a>").addClass(font_size[getArraryOne(num)]).
+                        addClass(color[random]).on("click",function (){
+                            getTag($(this));
+                        }).attr("data-id",item.id)
+                            .append("<span></span>")
+                            .append(item.name).appendTo("#showTag");
+                    })
+
+                }
+            }
+        })
+
+
+    })
+
+    var NUM=0;
+    function getArraryOne(array){
+        var length=array.length-NUM;
+        var b=0;
+        NUM++;
+        if(NUM==6){
+            NUM=0;
+        }
+        var random =Math.floor((Math.random() *length)) ;
+        var a=array[random];
+        b=array[length-1];
+        array[length-1]=a;
+        array[random]=b;
+        return a;
+    }
+
+    function getTag(obj){
+        var tagId=$(obj).data("id");
+        window.location.href="/Index/getTagList?tagId="+tagId;
+
+    }
+</script>
+
+</body>
+</html>

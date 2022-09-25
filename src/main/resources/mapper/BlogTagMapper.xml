@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mengyu.blogs.mapper.BlogTagMapper">
+
+    <resultMap id="BaseResultMap" type="mengyu.blogs.pojo.BlogTag">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="blogId" column="blog_id" jdbcType="INTEGER"/>
+            <result property="tagId" column="tag_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,blog_id,tag_id
+    </sql>
+
+    <sql id="Base_Column_tag_List">
+        blog_tag.id,blog_tag.blog_id,blog_tag.tag_id
+    </sql>
+
+    <select id="queryTagIds" resultType="java.lang.Integer" parameterType="Integer">
+        select tag_id
+        from  t_blog_tag where blog_id=#{blogId}
+    </select>
+
+    <select id="queryByBlodIdTags" resultType="java.lang.String" parameterType="Integer">
+
+        select t.name
+        from  t_blog_tag b
+        join t_tag t on b.tag_id=t.id
+        where b.blog_id=#{blogId}
+    </select>
+
+    <select id="queryByBlodIdTag" resultType="mengyu.blogs.pojo.Tag">
+
+        select t.id,t.name
+        from  t_blog_tag b
+                  join t_tag t on b.tag_id=t.id
+        where b.blog_id=#{blogId}
+    </select>
+
+
+</mapper>

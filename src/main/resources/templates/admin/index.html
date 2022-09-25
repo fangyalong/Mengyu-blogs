@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<template th:replace="common/introduce::AdminSemanticCSS(~{::title})">
+    <title>后台首页</title>
+</template>
+
+
+<body>
+<!--导航 -->
+<nav th:replace="common/common::menu(1)" ></nav>
+
+<div class="ui attached pointing menu top-size4">
+    <div class="ui container">
+        <div class="right menu">
+            <a th:href="@{/admin/goSaveBlog}" class="item">发布</a>
+            <a th:href="@{/admin/blogs}" class=" item">列表</a>
+        </div>
+    </div>
+</div>
+
+
+<!--中间内容-->
+<div class="my-container-xsmall my-padded-tb-big ">
+    <div class="ui container top-size3">
+        <div class="ui success large message">
+            <h3>Hi,</h3>
+            <p><span th:text="${session.user.nickname}"></span>,欢迎登录!</p>
+        </div>
+        <img th:src="@{/images/img_14.png}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" style="width: 1200px;height: 400px;" class="ui rounded bordered fluid image">
+    </div>
+</div>
+
+<!--音乐插件-->
+<template th:replace="common/introduce::mesuic"></template>
+<template th:replace="common/common::footer"></template>
+
+<template th:replace="common/introduce::AdminSemanticJs"></template>
+
+
+<script>
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+
+
+
+</script>
+</body>
+</html>

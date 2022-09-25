@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <template th:replace="common/introduce::JqueryAndSemantic(~{::title})">
+        <title>首页</title>
+    </template>
+
+<body>
+<!--导航 -->
+  <nav th:replace="common/introduce::menu(1)" ></nav>
+<!--轮播图-->
+<div class="wrap">
+    <ul class="list a ">
+        <li class="item active b c imageSize">0</li>
+        <li class="item b ">1</li>
+        <li class="item b ">2</li>
+        <li class="item b ">3</li>
+        <li class="item b">4</li>
+        <div  class="h-bg-text">
+            <div class="width-p">
+                <p id="p-title" class="text-animation">
+                </p>
+            </div>
+        </div>
+        <div class="h-bg-text">
+            <a href="javascript:;" class="h-text-font-size-plus" id="scroll_down_btn">
+                <i class="angle down icon animate__animated animate__bounce"  style="color: white ; caret-color: rgb(255, 255, 255);"></i>
+            </a>
+        </div>
+    </ul>
+</div>
+
+
+<!--中间内容-->
+  <div class="my-container my-padded-tb-big " id="Indexbody1">
+      <div class="ui container">
+          <div class="ui stackable grid">
+              <input type="hidden" id="current" th:value="${page1.current}">
+              <!--   左边博客列表 -->
+              <div class="eleven wide column top-szie7">
+                 <!-- header -->
+                  <div class="ui top attached segment">
+                      <div class="ui middle aligned two column grid">
+                          <div class="column" >
+                              <h3 class="ui teal header" >博客</h3>
+                          </div>
+                          <div class="right aligned column">
+                          共 <h2 class="ui orange header my-inline-block my-text-thin" th:text="${page1.total}">14</h2> 篇
+                      </div>
+                  </div>
+              </div>
+
+               <!--  content  -->
+              <div class="ui attached  segment">
+                  <div class="ui padded vertical segment my-padded-tb-big" th:each="blog,blogStats:${blogs}">
+                      <div class="ui mobile aligned middle reversed stackable grid" >
+                          <div class=" eleven wide column">
+                              <h3 class="ui header"><a th:href="@{/blog(blogId=${blog.id})}" th:text="${blog.title}">你真的理解什么是财富自由吗?</a> </h3>
+                              <p class="my-text" th:text="|${blog.description}......|">“财富自由是什么？多少钱才能实现财富自由？财富自由一般来说是指个人资产被
+                                  动收入等于或大于生活中的日常开销。而被动收入是指不需要花费时间、精力，就能自动获
+                                  得的收入。当进入这种状态就可以说已经实现了财富自由。而多少钱能实现，这跟个人的消 费支出有关。</p>
+                              <div class="ui grid">
+                                  <div class="eleven wide column">
+                                      <div class="ui horizontal link list">
+                                          <div class="item">
+                                              <img th:src="@{/images/toux.jpg}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui avatar image my-size ">
+                                              <div class="content"><a th:href="@{/Index/about}" class="header">MengYu</a></div>
+                                          </div>
+                                          <div class="item">
+                                              <i class="calendar icon" style="margin-top: -5px"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022-09-02</span>
+                                          </div>
+                                          <div class="item">
+                                              <i class="eye icon"></i><span th:text="${blog.views}" style="margin-left: 5px;margin-top: 5px"></span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="right aligned five wide column">
+                                      <a th:href="@{/Index/types(pageNum=1,typeId=${blog.type.id})}" target="_blank" class="ui teal basic label my-padded-tiny my-text-thin" th:text="${blog.type.name}">认知升级</a>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="five wide column ">
+                              <a  target="_blank" th:href="@{/blog(blogId=${blog.id})}">
+                                  <img th:src="@{${blog.firstPicture}}  " alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui rounded image  imageSize1">
+                              </a>
+                          </div>
+
+                      </div>
+                  </div >
+
+               </div>
+
+              <!-- footer -->
+              <div class="ui bottom  attached segment" th:u>
+                  <div class="ui middle aligned four column grid">
+                      <div class="column" >
+                          <a th:href="@{/Index(pageNum=${page1.current-1})}" th:class="${page1.current==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
+                      </div>
+                      <div class="column my-kuang">
+                          <div class="ui  mini link pagination menu" >
+                              <a  th:class="${num==page1.current}?'ui active clickNum teal  item':'ui clickNum teal item' " th:each="num:${#numbers.sequence(1,page1.pages)}" th:text="${num}">1</a>
+                          </div>
+                      </div>
+                      <div class="right aligned column my-right">
+                          <a th:href="@{/Index(pageNum=${page1.current+1})}" th:class="${page1.current==page1.pages}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
+                      </div>
+                  </div>
+              </div>
+
+              </div>
+
+              <div class="five wide column  animate__animated animate__fadeIn  top-size8" id="gding">
+                  <div class="ui segment  lian-width  widthmp " data-wow-duration="0.4s"  style="position: sticky;top:100px;">
+                          <div class="tou-x-z">
+                              <img class="ui medium circular image tou-my-size " th:src="@{/images/toux.jpg}">
+                          </div>
+
+                      <div class="ui stackable inverted secondary menu ">
+                          <div class="content place">
+                              <a class="ui teal header text-wz" th:href="@{/Index/about}">MengYu</a>
+                              <div class="meta place-mini">
+                                  <span class="date text-wz1">吾志所向，一往无前，愈挫愈奋，再接再厉.</span>
+                              </div>
+                              <div class="ui  centered grid  place-big text-wz2">
+                                  <span class="my-text ">文章<br><a href="javascript:;"  class="my-text-span" th:text="${page1.total}">5</a> </span>
+                                  <span class="my-text ">粉丝<br><a href="javascript:;"  class="my-text-span" th:text="${fansCount}">30</a> </span>
+                                  <span class="my-text ">评论<br><a href="javascript:;"  class="my-text-span" th:text="${commentCount}">400</a> </span>
+                                  <span class="my-text ">浏览量<br><a href="javascript:;"  class="my-text-span" th:text="${pageViewCount}">2005</a> </span>
+                              </div>
+                          </div>
+                          </div>
+                              <div class="sheng-jiao">
+                                  <span><i class="rocket  icon"></i>社交</span>
+                              </div>
+                              <div class="ui  centered  middle grid sheng-jiao-image">
+                                  <p ><i class="wechat green icon"></i><a th:href="@{/images/QrCode.jpg}"  target="_blank" >&nbsp;微信</a></p>
+                                  <p ><i class="copyright orange icon"></i><a href="https://blog.csdn.net/weixin_53797913?spm=1000.2115.3001.5343"  target="_blank" >&nbsp;CSDN</a></p>
+                                  <p><i class="github square black icon"></i><a href="https://github.com/fangyalong"  target="_blank" >&nbsp;GitHub</a></p>
+                              </div>
+
+                      <div class="sheng-jiao">
+                          <span><i class="tags icon"></i>标签</span>
+                      </div>
+
+                      <div>
+                          <!--	标签-->
+                          <div class="ui" id="TagList" >
+                          </div>
+                      </div>
+
+
+                      <div class="sheng-jiao">
+                          <span><i class="globe icon"></i>网站已有年日</span>
+                      </div>
+                      <div class="shijcolo">
+                          <span id="htmer_time"></span>
+                      </div>
+                          </div>
+
+
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+
+<div id="backToTheTop" class="h-padded h-fixed h-right-bottom" style="display: none">
+    <a title="回到顶部" href="javascript:;" class="ui icon button topBtn"><i class="angle up blue icon"></i></a>
+</div>
+
+<!--音乐插件-->
+<template th:replace="common/introduce::mesuic"></template>
+
+<template th:replace="common/introduce::footer"></template>
+
+
+<template th:replace="common/introduce::JavaScript"></template>
+
+<script>
+    function TagShowList() {
+        $.ajax({
+            url: "/TagShowList",
+            type: "GET",
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    var color = new Array("orange", "teal", "blue", "grey", "red","pink");
+                    var random = Math.floor(Math.random() * 10) % color.length;
+                    $("<a href=\"javascript:;\" class=\"ui place-mini  button\"></a>").addClass(color[random]).append(
+                        $("<span></span>").append(item.name)
+                    ).on("click", function () {
+                        window.location.href = "/Index/getTagList?tagId=" + item.id;
+                    }).appendTo("#TagList");
+                })
+            }
+        })
+    }
+
+    $(".clickNum").click(function (){
+        var num=$(this).text();
+        var current=$("#current").val();
+        if(num==current){
+            $(window).scrollTo($("#Indexbody1"),500);
+        }else{
+            window.location.href="/Index?pageNum="+num;
+
+        }
+    })
+
+    $(function (){
+        $(window).scrollTo($("#Indexbody1"),500);
+        TagShowList();
+    })
+</script>
+</body>
+</html>
