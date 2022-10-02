@@ -64,7 +64,7 @@
                                       <div class="ui horizontal link list">
                                           <div class="item width2">
                                               <img th:src="@{/images/toux.jpg}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui avatar image my-size ">
-                                              <div class="content width2"><a th:href="@{/Index/about}" class="header">MengYu</a></div>
+                                              <div class="content width2"><a th:href="@{/Index/about}" style="font-size: 5px !important;" class="header">MengYu</a></div>
                                           </div>
                                           <div class="item width2">
                                               <i class="calendar icon" style="margin-top: -5px"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022-09-02</span>
@@ -95,7 +95,7 @@
               <div class="ui bottom  attached segment" th:u>
                   <div class="ui middle aligned four column grid">
                       <div class="column" >
-                          <a style="font-size: 10px" th:href="@{/Index(pageNum=${page1.current-1})}" th:class="${page1.current==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
+                          <a style="font-size: 8px" th:href="@{/Index(pageNum=${page1.current-1})}" th:class="${page1.current==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
                       </div>
                       <div class="column my-kuang">
                           <div class="ui  mini link pagination menu" >
@@ -103,7 +103,7 @@
                           </div>
                       </div>
                       <div class="right aligned column my-right">
-                          <a style="font-size: 10px" th:href="@{/Index(pageNum=${page1.current+1})}" th:class="${page1.current==page1.pages}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
+                          <a style="font-size: 8px" th:href="@{/Index(pageNum=${page1.current+1})}" th:class="${page1.current==page1.pages}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
                       </div>
                   </div>
               </div>

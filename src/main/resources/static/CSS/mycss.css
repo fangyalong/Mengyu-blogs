@@ -627,7 +627,7 @@ body {
 
 
     .imageSize {
-        width: 420px !important;
+        width: 400px !important;
         height: 720px !important;
         background-repeat: no-repeat !important;
         background-size: 100% 100% !important;
@@ -642,7 +642,7 @@ body {
         font-size: 25px !important;
         text-align: left !important;
         margin-left: -250px !important;
-        margin-right: 300px !important;
+        margin-right: 320px !important;
     }
 
 .top-szie{
@@ -764,7 +764,7 @@ body {
         position: absolute !important;
         font-size: 15px !important;
         margin-top: 90px !important;
-        margin-left: 340px !important;
+        margin-left: 310px !important;
     }
     .colr4{
         color: #ad15ab;
@@ -775,7 +775,7 @@ body {
         position: absolute !important;
         font-size: 20px !important;
         margin-top: 10px !important;
-        margin-left: 300px !important;
+        margin-left: 290px !important;
     }
 
     .colr5{
@@ -859,13 +859,13 @@ body {
     }
 
     .width2{
-        margin-left: -10px;
+        margin-left: -11px;
         margin-right: 0px;
     }
 
     .width3{
-        margin-left: 2px;
-        margin-right: 0px;
+        margin-left: 2px !important;
+        margin-right: 0px !important;
     }
 
 
@@ -875,16 +875,15 @@ body {
     }
 
     .my-right {
-        margin-left: 78px;
+        margin-left: 73px;
         margin-right: 0px;
         padding-right: 0px;
     }
 
     .lian-width {
-        width: 390px !important;
+        width: 370px !important;
         height: 700px !important;
        align-content: center;
-        margin-right: 5px!important;
 
     }
 
