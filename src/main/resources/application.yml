@@ -11,9 +11,9 @@ spring:
   mail:
     host: smtp.163.com
     #邮箱
-    username: mengyu0430@163.com
+    username: xxx
     #授权码（不是密码
-    password: WZJDIVJEOCBYEUKF
+    password: xxx
     default-encoding: UTF-8
 
   mvc:
@@ -33,14 +33,14 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           #数据库地址
           url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf-8&useSSL=false
-          username: root
+          username: xxx
           #数据库密码
-          password: fyl2021
+          password: xxx
 
 
 
   redis:
-    host: 192.168.6.200
+    host: xxx
     port: 6379
     #Redis数据库索引（默认为0）
     database: 0
@@ -54,7 +54,7 @@ spring:
     lettuce.pool.max-idle: 5
     #连接池中的最小空闲连接
     lettuce.pool.min-idle: 0
-    password: fyl2021
+    password: xxx
 
 
 
@@ -73,9 +73,9 @@ myblog_mail:
   #域名 填你的域名
   domain_name: #
   #邮件发送者 为评论邮件回复配置的发送方邮件名
-  mail_sender: mengyu0430@163.com
+  mail_sender: xxx
   #邮件抄送 所有邮件都抄送一份到抄送这个邮箱
-  mail_cc: 1424812374@qq.com
+  mail_cc: xxx
 
   #邮件标题
   mail_title: '你有一条新消息'
