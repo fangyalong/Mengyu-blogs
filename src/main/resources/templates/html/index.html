@@ -62,15 +62,15 @@
                               <div class="ui grid">
                                   <div class="eleven wide column">
                                       <div class="ui horizontal link list">
-                                          <div class="item">
+                                          <div class="item width2">
                                               <img th:src="@{/images/toux.jpg}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui avatar image my-size ">
-                                              <div class="content"><a th:href="@{/Index/about}" class="header">MengYu</a></div>
+                                              <div class="content width2"><a th:href="@{/Index/about}" class="header">MengYu</a></div>
                                           </div>
-                                          <div class="item">
+                                          <div class="item width2">
                                               <i class="calendar icon" style="margin-top: -5px"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022-09-02</span>
                                           </div>
-                                          <div class="item">
-                                              <i class="eye icon"></i><span th:text="${blog.views}" style="margin-left: 5px;margin-top: 5px"></span>
+                                          <div class="item width2">
+                                              <i class="eye icon" style="margin-top: -2px"></i><span th:text="${blog.views}" style="margin-left: 5px;margin-top: -3px"></span>
                                           </div>
                                       </div>
                                   </div>
@@ -95,7 +95,7 @@
               <div class="ui bottom  attached segment" th:u>
                   <div class="ui middle aligned four column grid">
                       <div class="column" >
-                          <a th:href="@{/Index(pageNum=${page1.current-1})}" th:class="${page1.current==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
+                          <a style="font-size: 10px" th:href="@{/Index(pageNum=${page1.current-1})}" th:class="${page1.current==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
                       </div>
                       <div class="column my-kuang">
                           <div class="ui  mini link pagination menu" >
@@ -103,7 +103,7 @@
                           </div>
                       </div>
                       <div class="right aligned column my-right">
-                          <a th:href="@{/Index(pageNum=${page1.current+1})}" th:class="${page1.current==page1.pages}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
+                          <a style="font-size: 10px" th:href="@{/Index(pageNum=${page1.current+1})}" th:class="${page1.current==page1.pages}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
                       </div>
                   </div>
               </div>
@@ -124,7 +124,7 @@
                               </div>
                               <div class="ui  centered grid  place-big text-wz2">
                                   <span class="my-text ">文章<br><a href="javascript:;"  class="my-text-span" th:text="${page1.total}">5</a> </span>
-                                  <span class="my-text ">粉丝<br><a href="javascript:;"  class="my-text-span" th:text="${fansCount}">30</a> </span>
+                                      <span class="my-text ">粉丝<br><a href="javascript:;"  class="my-text-span" th:text="${fansCount}">30</a> </span>
                                   <span class="my-text ">评论<br><a href="javascript:;"  class="my-text-span" th:text="${commentCount}">400</a> </span>
                                   <span class="my-text ">浏览量<br><a href="javascript:;"  class="my-text-span" th:text="${pageViewCount}">2005</a> </span>
                               </div>

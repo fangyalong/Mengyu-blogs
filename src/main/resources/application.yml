@@ -11,50 +11,50 @@ spring:
   mail:
     host: smtp.163.com
     #邮箱
-    username: xxx
+    username: mengyu0430@163.com
     #授权码（不是密码
-    password: xxx
+    password: WZJDIVJEOCBYEUKF
     default-encoding: UTF-8
 
   mvc:
-   hiddenmethod:
-    filter:
-      enabled: true
+    hiddenmethod:
+      filter:
+        enabled: true
 
   profiles:
-      active: dev
+    active: dev
 
   datasource:
     dynamic:
       primary: one
       strict: false
       datasource:
-          one:
-            driver-class-name: com.mysql.cj.jdbc.Driver
-            #数据库地址
-            url: xxx
-            username: root
-            #数据库密码
-            password: xxx
+        one:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          #数据库地址
+          url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf-8&useSSL=false
+          username: root
+          #数据库密码
+          password: fyl2021
 
 
 
   redis:
-
-   host:
-   port:
-  #Redis数据库索引（默认为0）
-   database: 0
-  #连接超时时间（毫秒）
-   timeout: 1800000
-  #连接池最大连接数（使用负值表示没有限制）
-   lettuce.pool.max-active: 20
-  #最大阻塞等待时间(负数表示没限制)
-   lettuce.pool.max-wait: -1
-  #连接池中的最大空闲连接
-   lettuce.pool.max-idle: 5
-  #连接池中的最小空闲连接
-   lettuce.pool.min-idle: 0
+    host: 192.168.6.200
+    port: 6379
+    #Redis数据库索引（默认为0）
+    database: 0
+    #连接超时时间（毫秒）
+    timeout: 1800000
+    #连接池最大连接数（使用负值表示没有限制）
+    lettuce.pool.max-active: 20
+    #最大阻塞等待时间(负数  表示没限制)
+    lettuce.pool.max-wait: -1
+    #连接池中的最大空闲连接
+    lettuce.pool.max-idle: 5
+    #连接池中的最小空闲连接
+    lettuce.pool.min-idle: 0
+    password: fyl2021
 
 
 
@@ -73,9 +73,9 @@ myblog_mail:
   #域名 填你的域名
   domain_name: #
   #邮件发送者 为评论邮件回复配置的发送方邮件名
-  mail_sender: xxx
+  mail_sender: mengyu0430@163.com
   #邮件抄送 所有邮件都抄送一份到抄送这个邮箱
-  mail_cc: xxx
+  mail_cc: 1424812374@qq.com
 
   #邮件标题
   mail_title: '你有一条新消息'

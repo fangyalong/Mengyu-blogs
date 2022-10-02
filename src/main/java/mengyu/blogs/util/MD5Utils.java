@@ -39,7 +39,7 @@ public class MD5Utils {
     }
 
     public static void main(String[] args){
-        System.out.println(code("fyl2022"));
+        System.out.println(code("123456"));
 
     }
 }

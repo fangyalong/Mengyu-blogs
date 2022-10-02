@@ -12,6 +12,7 @@
     <artifactId>blogs</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>blogs</name>
+    <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
     <properties>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
@@ -117,11 +118,7 @@
             <artifactId>log4j-core</artifactId>
             <version>2.12.1</version>
         </dependency>
-        <dependency>
-            <groupId>mengyu</groupId>
-            <artifactId>blogs</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
 

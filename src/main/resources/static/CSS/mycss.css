@@ -617,7 +617,6 @@ body {
         width: 460px !important;
         height: 250px !important;
         margin-top: 10px !important;
-        left: 10px !important;
     }
 
 
@@ -628,7 +627,7 @@ body {
 
 
     .imageSize {
-        width: 540px !important;
+        width: 420px !important;
         height: 720px !important;
         background-repeat: no-repeat !important;
         background-size: 100% 100% !important;
@@ -642,8 +641,8 @@ body {
         margin-top: 130px !important;
         font-size: 25px !important;
         text-align: left !important;
-        margin-left: -200px !important;
-        margin-right: 200px !important;
+        margin-left: -250px !important;
+        margin-right: 300px !important;
     }
 
 .top-szie{
@@ -763,7 +762,7 @@ body {
 
     .font-size5{
         position: absolute !important;
-        font-size: 20px !important;
+        font-size: 15px !important;
         margin-top: 90px !important;
         margin-left: 340px !important;
     }
@@ -774,9 +773,9 @@ body {
 
     .font-size6{
         position: absolute !important;
-        font-size: 30px !important;
+        font-size: 20px !important;
         margin-top: 10px !important;
-        margin-left: 340px !important;
+        margin-left: 300px !important;
     }
 
     .colr5{
@@ -857,5 +856,44 @@ body {
     .top-size10{
         padding-top: 10px !important;
 
+    }
+
+    .width2{
+        margin-left: -10px;
+        margin-right: 0px;
+    }
+
+    .width3{
+        margin-left: 2px;
+        margin-right: 0px;
+    }
+
+
+    .width4{
+        margin-left: 3px !important;
+        margin-right: 0px;
+    }
+
+    .my-right {
+        margin-left: 78px;
+        margin-right: 0px;
+        padding-right: 0px;
+    }
+
+    .lian-width {
+        width: 390px !important;
+        height: 700px !important;
+       align-content: center;
+        margin-right: 5px!important;
+
+    }
+
+    .padding{
+        padding-left:0px !important;
+        padding-right: 0px !important;
+    }
+
+    .h-boder-radius{
+        text-align: justify !important;
     }
 }

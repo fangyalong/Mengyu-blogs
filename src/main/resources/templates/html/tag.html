@@ -26,15 +26,15 @@
 
                             <div class="eleven wide column">
                                 <div class="ui horizontal link list">
-                                    <div class="item">
+                                    <div class="item width3" >
                                         <img th:src="@{/images/toux.jpg}" alt="你访问的资源被怪兽抢走了,奥特曼正在追击中!!!" class="ui avatar image my-size ">
-                                        <div class="content"><a th:href="@{/Index/about}"  class="header">MengYu</a></div>
+                                        <div class="content width2"><a th:href="@{/Index/about}" class="header">MengYu</a></div>
                                     </div>
-                                    <div class="item">
+                                    <div class="item width3">
                                         <i class="calendar icon" style="margin-top: -5px"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2022-09-02</span>
                                     </div>
-                                    <div class="item">
-                                        <i class="eye icon"></i><span th:text="${blog.views}" style="margin-left: 5px;margin-top: 5px"></span>
+                                    <div class="item width4">
+                                        <i class="eye icon" style="margin-top: -3px !important;"></i><span th:text="${blog.views}" style="margin-left: 5px;margin-top: 5px"></span>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
         <div class="ui bottom  attached segment" th:unless="${blogs.size==0}">
             <div class="ui middle aligned four column grid">
                 <div class="column" >
-                    <a th:href="@{/Index/getTagList(pageNum=${pageNum-1},tagId=${tagId})}" th:class="${pageNum==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
+                    <a style="font-size: 10px" th:href="@{/Index/getTagList(pageNum=${pageNum-1},tagId=${tagId})}" th:class="${pageNum==1}?'ui mini teal basic disabled button':'ui mini teal basic button'" >往前走</a>
                 </div>
                 <div class="column my-kuang">
                     <div class="ui  mini link pagination menu" >
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="right aligned column my-right">
-                    <a th:href="@{/Index/getTagList(pageNum=${pageNum+1},tagId=${tagId})}" th:class="${pageNum==totleNum}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
+                    <a style="font-size: 10px" th:href="@{/Index/getTagList(pageNum=${pageNum+1},tagId=${tagId})}" th:class="${pageNum==totleNum}? 'ui mini teal basic disabled button':'ui mini teal basic button'">往后去</a>
                 </div>
             </div>
         </div>
